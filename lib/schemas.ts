@@ -1,6 +1,5 @@
 import {z} from 'zod';
 
-// Pokemon API schemas
 export const FlavorTextEntrySchema = z.object({
     flavor_text: z.string(),
     language: z.object({
