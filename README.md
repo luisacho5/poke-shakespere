@@ -1,8 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokemon Shakespearean Description App
+
+A web application that fetches Pokemon descriptions and translates them into Shakespearean English. Users can also save
+their favorite Pokemon for quick access.
+
+## Features
+
+- 🔍 **Search Pokemon**: Enter any Pokemon name to get its description
+- 🎭 **Shakespearean Translation**: Automatically translates Pokemon descriptions into Shakespearean English
+- ❤️ **Favorites**: Save and manage your favorite Pokemon
+- 💾 **Persistence**: Favorites are saved in localStorage and persist after browser refresh
+- ⚡ **Server-Rendered**: Built with Next.js for optimal performance
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (React 19)
+- **Language**: TypeScript
+- **Validation**: Zod
+- **Styling**: Tailwind CSS
+- **APIs**:
+    - [PokéAPI](https://pokeapi.co/docs/v2) - Pokemon data
+    - [Shakespeare Translator API](https://funtranslations.com/api/shakespeare) - Text translation
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd poke-shakespere
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Running Locally
+
+1. Start the development server:
 
 ```bash
 npm run dev
@@ -14,23 +63,66 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+### Running Tests
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Run all tests
+npm test
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run tests in watch mode
+npm run test:watch
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run tests with coverage
+npm run test:coverage
+```
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Search for a Pokemon**: Type a Pokemon name (e.g., "pikachu") in the text field and click Submit
+2. **View Descriptions**: See both the original and Shakespearean descriptions
+3. **Add to Favorites**: Click the heart icon to save a Pokemon to your favorites
+4. **Manage Favorites**: Click on a favorite to view it again, or click ❌ to remove it
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+poke-shakespere/
+├── app/
+│   ├── api/
+│   │   └── pokemon/
+│   │       └── route.ts     # API route for fetching and translating Pokemon
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Home page
+├── components/
+│   ├── PokemonForm.tsx      # Main form component with state management
+│   ├── PokemonCard.tsx      # Displays Pokemon data
+│   ├── FavoritesList.tsx    # Favorites section
+│   ├── TextField.tsx        # Input component
+│   └── SubmitButton.tsx     # Button component
+├── lib/
+│   ├── api.ts               # Client-side API calls
+│   ├── schemas.ts           # Zod schemas for type validation
+│   └── favorites.ts         # LocalStorage management for favorites
+├── __tests__/
+│   ├── components/          # Component tests
+│   ├── lib/                 # Utility function tests
+│   └── app/api/             # API route tests
+├── jest.config.js           # Jest configuration
+├── jest.setup.js            # Jest setup file
+└── README.md
+```
+
+## Important Note About Shakespeare API
+
+⚠️ **The Shakespeare Translator API (funtranslations.com) requires a paid subscription for production use.** If the
+Shakespeare API is unavailable or returns an error, the app will gracefully fall back to displaying the original Pokemon
+description.
